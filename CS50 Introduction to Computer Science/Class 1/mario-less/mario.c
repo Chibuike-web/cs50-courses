@@ -1,28 +1,34 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
-  int height;
-  do
-  {
-    printf("Height: ");
-    scanf("%d", &height);
-  }
-  while (height < 1 || height > 50);
+    int height;
 
-  for (int i = 0; i < height; i++)
-  {
+    do
+    {
+        printf("Height: ");
+        
+        if (scanf("%d", &height) != 1)
+        {
+            height = -1;
+            scanf("%*s");
+        }
+    } while (height < 1 || height > 50); // Keep asking until valid
 
-    for (int j = 0; j < height - i - 1; j++)
+    // Print the pyramid
+    for (int i = 0; i < height; i++)
     {
-      printf(" ");
+        for (int j = 0; j < height - i - 1; j++)
+        {
+            printf(" ");
+        }
+        for (int j = 0; j <= i; j++)
+        {
+            printf("#");
+        }
+        
+        printf("\n");
     }
-    for (int j = 0; j < i; j++)
-    {
-      printf("#");
-    }
-    
-    printf("#\n");
-  }
+
+    return 0;
 }
